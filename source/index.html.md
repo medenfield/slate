@@ -30,22 +30,16 @@ This example API documentation page was created with [Slate](https://github.com/
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
   -H "Authorization: meowmeowmeow"
+```
+
+```php
+$kittn = require('kittn');
+
+let api = kittn.authorize('meowmeowmeow');
 ```
 
 ```javascript
@@ -58,31 +52,17 @@ let api = kittn.authorize('meowmeowmeow');
 
 Open Angler uses API keys to allow access to the API. You can register a new Ope API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Open Angler expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: testtesttest`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>testtesttest</code> with your personal API key.
 </aside>
 
-# Kittens
+# Listings
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Listings
 
 ```shell
 curl "http://example.com/api/kittens"
@@ -117,7 +97,7 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all kittens lisings.
 
 ### HTTP Request
 
