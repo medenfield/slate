@@ -242,6 +242,9 @@
                     <a href="#get-a-specific-listing" class="toc-h2 toc-link" data-title="Get a Specific Listing">Get a Specific Listing</a>
                   </li>
                   <li>
+                    <a href="#create-a-listing" class="toc-h2 toc-link" data-title="Create a Listing">Create a Listing</a>
+                  </li>
+                  <li>
                     <a href="#delete-a-specific-listing" class="toc-h2 toc-link" data-title="Delete a Specific Listing">Delete a Specific Listing</a>
                   </li>
               </ul>
@@ -538,6 +541,52 @@ You must replace <code>YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs</code> with y
 <td>Types of reels suitable for this listing.</td>
 </tr>
 </tbody></table>
+<h2 id='create-a-listing'>Create a Listing</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://openangler.com/api/listings"</span>
+  -X <span class="s2">"POST"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"access-token: UxotI49THODxc4Gbz0c_lggFww3Q1q7k9dd-IhUVGeg"</span>
+  -d <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">test api user</span><span class="se">\"</span><span class="s2">}"</span>
+</code></pre><h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://openangler.com/api/listings/</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Unique ID of the listing.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the listing.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>The listing description, usually formatted HTML.</td>
+</tr>
+<tr>
+<td>what_to_bring</td>
+<td>string</td>
+<td>What anglers will need to bring.</td>
+</tr>
+<tr>
+<td>charter_type</td>
+<td>integer</td>
+<td>The charter type ID of the trip.</td>
+</tr>
+<tr>
+<td>travel_type</td>
+<td>integer</td>
+<td>The travel type ID of the trip.</td>
+</tr>
+</tbody></table>
 <h2 id='delete-a-specific-listing'>Delete a Specific Listing</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://openangler.com/api/listings/2"</span>
   -X DELETE
   -H <span class="s2">"access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"</span>
@@ -551,7 +600,7 @@ You must replace <code>YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs</code> with y
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific listing.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE http://openngler.com/api/listings/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
