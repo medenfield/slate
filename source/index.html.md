@@ -246,6 +246,33 @@ boat_type | string | The type of boat used on this listing.
 fishing_types | array | Types of fishing offered on this listing.
 reel_types | array | Types of reels suitable for this listing.
 
+
+## Create a Listing
+
+```shell
+curl "https://openangler.com/api/listings"
+  -X "POST"
+  -H "Content-Type: application/json"
+  -H "access-token: UxotI49THODxc4Gbz0c_lggFww3Q1q7k9dd-IhUVGeg"
+  -d "{\"name\":\"test api user\"}"
+```
+
+### HTTP Request
+
+`POST https://openangler.com/api/listings/`
+
+
+### Query Parameters
+
+Name | Type | Description
+--------- | ------- | -----------
+id | integer | Unique ID of the listing.
+name | string | The name of the listing.
+description | string | The listing description, usually formatted HTML.
+what_to_bring | string | What anglers will need to bring.
+charter_type | integer | The charter type ID of the trip.
+travel_type | integer | The travel type ID of the trip. 
+
 ## Delete a Specific Listing
 
 ```shell
