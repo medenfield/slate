@@ -3,10 +3,10 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - php
+  #- php
   #- ruby
   #- python
-  - javascript
+  #- javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -20,60 +20,41 @@ search: true
 
 # Introduction
 
-Welcome to the Open Angler API! You can use our API to access Open Angler API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Open Angler API. You can use our API to access API endpoints, which can get information on various listings, trips, requests, guides, and other database resources.
 
-We have language bindings in Shell and PHP! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Right now, all language bindings are demonstrated in Shell. We will add more language examples as time permits.
 
 # Authentication
 
 > To authorize, use this code:
 
 ```shell
-# With shell, you can just pass the correct header with each request
+
+curl -u "username:password" https://openangler.com/api/login-token
+
+# With shell, you just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Content-Type: application/json"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
 ```
 
-```php
-$kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Open Angler uses API keys to allow access to the API. You can register a new Ope API key at our [developer portal](http://example.com/developers).
+Open Angler uses an API access token to interface with the API. Please contact us to obtain permission.
 
 Open Angler expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: testtesttest`
+`access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs`
 
 <aside class="notice">
-You must replace <code>testtesttest</code> with your personal API key.
+You must replace <code>YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs</code> with your personal API key.
 </aside>
 
-# Listings
+# Images
 
-## Get All Listings
+## Get All Images
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "https://openangler.com/api/images"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"   
 ```
 
 > The above command returns JSON structured like this:
@@ -81,65 +62,153 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "id": 2,
+    "name": "Offshore trip",
+    "type": "offshore",
+    "guide": 5
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id": 3,
+    "name": "Inshore trip",
+    "type": "Inshore",
+    "guide": 6
   }
 ]
 ```
 
-This endpoint retrieves all kittens lisings.
+### HTTP Request
+
+`GET https://openangler.com/api/images/`
+
+# Listings
+
+## Get All Listings
+
+```shell
+curl "https://openangler.com/api/listings"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 37,
+    "self": "http://openangler.com/api/v1.0/listings/37",
+    "name": "Test Listing",
+    "user": 1,
+    "description": "<p>Test description of a listing</p>",
+    "what_to_bring": "Be sure to wear comfortable clothing.",
+    "charter_type": "Inshore Trip",
+    "travel_type": "Power Boat",
+    "boat_type": "Flats Boat",
+    "fishing_types": [
+      "Fly",
+      "Light Tackle/Spin"
+    ],
+    "reel_types": [
+      "Fly",
+      "Baitcast",
+      "Conventional",
+      "Spinning"
+    ],
+    "included_items": [
+      "Fishing License",
+      "Fuel",
+      "Ice",
+    ],
+    "boat_amenities": [
+      "Poling Platform",
+      "Radio",
+    ],
+    "other_amenities": [
+      "Pick-up/Drop-off",
+      "Tackle Shop"
+    ],
+    "terms": [
+      "Catch and Release",
+      "Great for Children"
+    ],
+    "experience": null,
+    "image": {
+      "self": "https://openangler.com/sites/default/files/Jimmy2.JPG",
+      "filemime": "image/jpeg",
+      "filesize": "1734493",
+      "width": "3050",
+      "height": "2033",
+      "styles": {
+        "thumbnail": "https://openangler.com/sites/default/files/styles/thumbnail/public/Jimmy2.JPG?itok=MdE5JIas",
+        "medium": "https://openangler.com/sites/default/files/styles/medium/public/Jimmy2.JPG?itok=3BV5wpBe",
+        "large": "https://openangler.com/sites/default/files/styles/large/public/Jimmy2.JPG?itok=RO_6FIYc"
+      }
+    },
+    "lat": "32.776474900000",
+    "lon": "-79.931051200000",
+    "address": {
+      "city": "Charleston",
+      "state": "SC",
+      "postal_code": "",
+      "country": "US"
+    },
+    "payment_option": null,
+    "length_half_day": "4",
+    "pricing_half_day": "400",
+    "length_3/4_day": "6",
+    "pricing_3/4_day": "600",
+    "length_full_day": "8",
+    "pricing_full_day": "750",
+    "pricing_lowest": "400",
+    "deposit_percentage": null,
+    "passengers_base": "2",
+    "passengers_extra": {
+      "count": "2",
+      "price": "50"
+    },
+    "passengers_total": "4",
+    "hours_extra": {
+      "count": "2",
+      "price": "100"
+    },
+    "other_fees": null,
+    "cancellation_policy": "2",
+    "status": "1",
+    "metatags": {
+      "title": "Metatag title",
+      "description": "Metatag description."
+    }
+  }
+]
+```
+
+This endpoint retrieves all listings.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://openangler.com/api/listings`
 
 ### Query Parameters
 
-Parameter | Default | Description
+
+Name | Type | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+id | integer | Unique ID.
+name | string | The name of the listing.
+user | integer | ID of the listing author.
+description | string | The listing description, usually formatted HTML.
+what_to_bring | string | What anglers will need to bring.
+charter_type | string | The type of charter.
+travel_type | string | The type of travel.
+boat_type | string | The type of boat used on this listing.
+fishing_types | array | Types of fishing offered on this listing.
+reel_types | array | Types of reels suitable for this listing.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific Listing
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "https://openangler.com/api/listings/2"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
 ```
 
 > The above command returns JSON structured like this:
@@ -147,54 +216,42 @@ let max = api.kittens.get(2);
 ```json
 {
   "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "name": "Offshore trip",
+  "type": "offshore",
+  "guide": 5
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific listing.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://openangler.com/api/listings/<ID>`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
-## Delete a Specific Kitten
+Name | Type | Description
+--------- | ------- | -----------
+id | integer | Unique ID.
+name | string | The name of the listing.
+user | integer | ID of the listing author.
+description | string | The listing description, usually formatted HTML.
+what_to_bring | string | What anglers will need to bring.
+charter_type | string | The type of charter.
+travel_type | string | The type of travel.
+boat_type | string | The type of boat used on this listing.
+fishing_types | array | Types of fishing offered on this listing.
+reel_types | array | Types of reels suitable for this listing.
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Delete a Specific Listing
 
 ```shell
-curl "http://example.com/api/kittens/2"
+curl "https://openangler.com/api/listings/2"
   -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
 ```
 
 > The above command returns JSON structured like this:
@@ -206,14 +263,14 @@ let max = api.kittens.delete(2);
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint deletes a specific listing.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE http://openngler.com/api/listings/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the listing to delete
