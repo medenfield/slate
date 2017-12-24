@@ -3,7 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  #- php
   #- ruby
   #- python
   #- javascript
@@ -48,6 +47,109 @@ Open Angler expects for the API key to be included in all API requests to the se
 You must replace <code>YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs</code> with your personal API key.
 </aside>
 
+# Users  
+
+## Get All Users
+
+```shell
+curl "https://openangler.com/api/users"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"   
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+  "data":[
+    {
+      "label":null,
+      "self":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/users\/0"
+    },
+    {
+      "id":1,
+      "label":"Open Angler",
+      "self":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/users\/1",
+      "mail":"user+1@localhost.localdomain"
+    },
+    {
+      "id":96,
+      "label":"test test",
+      "self":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/users\/96",
+      "mail":"user+96@localhost.localdomain"
+    },
+  ]
+}
+```
+
+### HTTP Request
+
+`GET https://openangler.com/api/users/`
+
+## Get a Specific User  
+
+```
+curl "https://openangler.com/api/users/<id>"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"   
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data":
+  [
+    {
+      "id":"1",
+      "label":"Open Angler",
+      "self":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/users\/1",
+      "mail":"user+1@localhost.localdomain"
+    }
+  ],
+  "self":{
+    "title":"Self",
+    "href":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/users\/1"
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://openangler.com/api/users/<id>`
+
+
+### URL Paramaters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the user to retrieve
+
+
+## Delete a User  
+
+```shell
+curl "https://openangler.com/api/users/<id>"
+  -X DELETE
+  -I
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"   
+```
+
+### HTTP Request
+
+`DELETE https://openangler.com/api/users/<ID>`
+
+Response Code | Meaning
+---------- | -------
+200 | The user has been deleted
+422 | The user does not exist
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the user to delete
+
 # Images
 
 ## Get All Images
@@ -60,25 +162,168 @@ curl "https://openangler.com/api/images"
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 2,
-    "name": "Offshore trip",
-    "type": "offshore",
-    "guide": 5
+{
+  "data":[
+    {
+      "id": 1,
+      "filename":"picture-2-1400630811.jpg",
+      "image_metadata":{
+        "uri":"public:\/\/pictures\/picture-2-1400630811.jpg",
+        "filemime":"image\/jpeg",
+        "filesize":15341,
+        "status":1,
+        "timestamp":1411524377,
+        "height":320,
+        "width":263
+      }
+    },
+    {
+      "id": 2,
+      "filename":"picture-4-1400638221.jpg",
+      "image_metadata":{
+        "uri":"public:\/\/pictures\/picture-4-1400638221.jpg",
+        "filemime":"image\/jpeg",
+        "filesize":15341,
+        "status":1,
+        "timestamp":1411524377,
+        "height":320,
+        "width":263
+      }
+    }
+  ],
+  "count": 6142,
+  "self": {
+    "title": "Self",
+    "href": "http://openangler.test.dd:8083/api/v1.0/images"
   },
-  {
-    "id": 3,
-    "name": "Inshore trip",
-    "type": "Inshore",
-    "guide": 6
+  "next": {
+    "title": "Next",
+    "href": "http://openangler.test.dd:8083/api/v1.0/images?page%5Bnumber%5D=2"
   }
-]
+}
 ```
 
 ### HTTP Request
 
 `GET https://openangler.com/api/images/`
+
+## Get a Specific Image
+
+```shell
+curl "https://openangler.com/api/images/2"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"   
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data":[
+    {
+      "id":"2",
+      "filename":"picture-4-1400638221.jpg",
+      "image_metadata":{
+        "uri":"public:\/\/pictures\/picture-4-1400638221.jpg",
+        "filemime":"image\/jpeg",
+        "filesize":15341,
+        "status":1,
+        "timestamp":1411524377,
+        "height":320,
+        "width":263
+      }
+    }
+  ],
+  "self":{
+    "title":"Self",
+    "href":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/images\/2"
+  }
+}
+```
+
+
+
+### HTTP Request
+
+`GET https://openangler.com/api/images/<id>`
+
+
+
+## Create an Image
+
+```shell
+  curl 'https://www.openangler.com/api/file-upload'
+    -X POST
+    -H "access-token: 2tlaxblv-vEAmYEe5rkjb5r6pMRXZBjf6Me4y7pNpUE"
+    -F "image=@/path/to/file/file.jpg"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+  "data":
+  [
+    [
+      {
+      "id":"39178",
+      "label":"zanesboat2.jpg",
+      "self":"http:\/\/openangler.test.dd:8083\/api\/file-upload\/39178"
+      }
+    ]
+  ],
+  "count":6142,
+  "self":
+  {
+    "title":"Self",
+    "href":"http:\/\/openangler.test.dd:8083\/api\/file-upload"
+  },
+  "next":
+  {
+    "title":"Next",
+    "href":"http:\/\/openangler.test.dd:8083\/api\/file-upload?page%5Bnumber%5D=2"
+  }
+}
+```
+
+<aside class="warning">Upload images for listings and profiles prior to creating a new listing or profile.</aside>
+
+### HTTP Request
+
+`POST https://www.openangler.com/api/file-upload`
+
+
+### Query Parameters
+
+Name | Type | Description
+--------- | ------- | -----------
+None
+
+
+## Delete an Image
+
+```shell
+curl "https://openangler.com/api/images/2"
+  -X DELETE
+  -H "access-token: 2tlaxblv-vEAmYEe5rkjb5r6pMRXZBjf6Me4y7pNpUE"   
+```
+
+### HTTP Request
+
+`DELETE http://openngler.com/api/images/<ID>`
+
+Response Code | Meaning
+---------- | -------
+200 | The image has been deleted
+422 | The image does not exist
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the image to delete
+
+
 
 # Listings
 
@@ -224,8 +469,6 @@ curl "https://openangler.com/api/listings/2"
 
 This endpoint retrieves a specific listing.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
 ### HTTP Request
 
 `GET https://openangler.com/api/listings/<ID>`
@@ -257,6 +500,8 @@ curl "https://openangler.com/api/listings"
   -d "{\"name\":\"test api user\"}"
 ```
 
+<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+
 ### HTTP Request
 
 `POST https://openangler.com/api/listings/`
@@ -271,30 +516,29 @@ name | string | The name of the listing.
 description | string | The listing description, usually formatted HTML.
 what_to_bring | string | What anglers will need to bring.
 charter_type | integer | The charter type ID of the trip.
-travel_type | integer | The travel type ID of the trip. 
+travel_type | integer | The travel type ID of the trip.
 
-## Delete a Specific Listing
+## Delete a Listing
 
 ```shell
-curl "https://openangler.com/api/listings/2"
+curl "https://openangler.com/api/listings/"
   -X DELETE
+  -I
   -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
 
 This endpoint deletes a specific listing.
 
 ### HTTP Request
 
 `DELETE http://openngler.com/api/listings/<ID>`
+
+Response Code | Meaning
+---------- | -------
+200 | The listing has been deleted.
+422 | The listing does not exist. (Unprocessable Entity)
+
 
 ### URL Parameters
 
