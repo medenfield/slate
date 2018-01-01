@@ -682,6 +682,106 @@ curl "https://openangler.com/api/requets"
 `POST http://openangler.com/api/requests`
 
 
+
+# Trips
+
+Confirmed trips on Open Angler.
+
+
+## Get a specific request
+
+```
+curl "https://openangler.com/api/trips/<id>"
+  -H "access-token: LoehxXU1OexRXmW7jl2XfjYMbRNbkAZo86wuXqKLUqw"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data":[
+    {
+      "id":"123456",
+      "self":"https:\/\/openangler.com\/api\/v1.0\/trips\/123456",
+      "name":"Lake Fishing Trip",
+      "guide_id":"1",
+      "listing_reference":"37",
+      "trip_date":{
+        "value":"2017-12-29 06:00:00",
+        "value2":"2017-12-29 12:00:00",
+        "timezone":"America\/New_York",
+        "timezone_db":"America\/New_York",
+        "date_type":"datetime"
+      },
+      "base_price":"600.00",
+      "guide_fees":[
+        {
+          "fee_name":"Test Fee",
+          "price":"100.00",
+        },
+        {
+          "fee_name":"Test Fee 2",
+          "price":"300.00",
+        }
+      ],
+      "platform_fee":"40.00",
+      "customer_total":"1041.00",
+      "transaction_fee":"29.00",
+      "commission":"0.00",
+      "guide_payout":"971.00",
+      "customer_id":"1",
+      "customer_name":"John Doe",
+      "customer_email":"johndoe@example.com",
+      "customer_phone":"( 123 ) 123 - 2132",
+      "customer_guest_count":"2",
+      "cancellation_policy":"1",
+      "request_reference" : "123455",
+      "status": "16"
+    }
+  ],
+  "self":{
+    "title":"Self",
+    "href":"https:\/\/openangler.com\/api\/v1.0\/requests\/123456"
+  }
+}
+```
+
+### HTTP Request
+
+`GET http://openngler.com/api/trips/<ID>`
+
+
+### Attributes
+
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string | The name of the trip, convention is to use the name of the listing.
+guide_id | string | The ID of the guide.
+listing_reference | string | The ID of the listing.
+trip_date | object | A date object.
+* value | string | Start datetime. Formatted 2018-01-01 08:00:00
+* value2 | string | Ending datetime. Formatted 2018-01-01 12:00:00
+* timezone | string | The timezone of the datestamp.
+* timezone_db | string | The timezone of the datestamp.
+* date_type | string | datetime
+base_price | string | The price of the trip before any booking or guide fees.
+guide_fees | string | The price of any additional fees that may be offered for this trip.
+platform_fee | string | The amount Open Angler uses to cover Stripe fees from the customer total.
+customer_total | string | The total amount the customer will pay.
+transaction_fee | string | The amount Open Angler uses to cover Stripe fees for the guide payout.
+commission | string | The amount Open Angler keeps for referring the trip
+guide_payout | string | The amount the guide will be paid via bank transfer.
+customer_id | string | The user ID of the customer booking the trip.
+customer_name | string | The name of the customer going on the trip.
+customer_email | string | The email address of the customer going on the trip.
+customer_phone | string | The phone number of the customer going on the trip.
+customer_guest_count | string | The number of guests going on this trip.
+cancellation_policy | string | The cancellation policy applied to this trip.
+request_reference | string | The ID of the Request node
+workflow_state | string | The workflow state of the trip
+
+
+
 # Images
 
 ## Get All Images
@@ -1181,3 +1281,175 @@ Parameter | description
 --------- | -----------
 id        | The id of the boat amenity
 name      | The name of the travel amenity
+
+
+## Other Amenities
+
+This endpoint shows all other amenities
+
+```shell
+curl "https://openangler.com/api/otheramenities"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
+```
+
+You can filter by name using the built-in filtering mechanism
+
+`filter[name]=Overnight`
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 84,
+      "self": "https://openangler.com/api/v1.0/otheramenities/84",
+      "name": "Rod/Reel Rentals"
+    },
+    {
+      "id": 85,
+      "self": "https://openangler.com/api/v1.0/otheramenities/85",
+      "name": "Boat/Raft Rentals"
+    }
+  ]
+}
+```
+
+
+### HTTP Request
+
+`GET https://openangler.com/api/otheramenities`
+
+
+### Parameters
+
+Parameter | description
+--------- | -----------
+id        | The id of the other amenity
+name      | The name of the other amenity
+
+
+## Terms and Conditions
+
+This endpoint shows all terms and conditions
+
+```shell
+curl "https://openangler.com/api/terms"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 57,
+      "self": "https://openangler.com/api/v1.0/terms/57",
+      "name": "Catch and Release"
+    },
+    {
+      "id": 58,
+      "self": "https://openangler.com/api/v1.0/terms/58",
+      "name": "Catch and Keep"
+    }
+  ]
+}
+```
+
+
+### HTTP Request
+
+`GET https://openangler.com/api/terms`
+
+
+### Parameters
+
+Parameter | description
+--------- | -----------
+id        | The id of the term
+name      | The name of the term
+
+
+## Angler Types
+
+This endpoint shows all Angler Types
+
+```shell
+curl "https://openangler.com/api/anglertypes"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 56,
+      "self": "https://openangler.com/api/v1.0/terms/56",
+      "name": "Great For Children"
+    },
+    {
+      "id": 151,
+      "self": "https://openangler.com/api/v1.0/terms/151",
+      "name": "Experienced Anglers"
+    }
+  ]
+}
+```
+
+
+### HTTP Request
+
+`GET https://openangler.com/api/anglertypes`
+
+
+### Parameters
+
+Parameter | description
+--------- | -----------
+id        | The id of the angler type
+name      | The name of the angler type
+
+
+## Tags
+
+This endpoint shows all Tags used in blog posts
+
+```shell
+curl "https://openangler.com/api/tags"
+  -H "access-token: YZR5Ol_myOpa7k88CNj02HbYkOWzoxh0mNAqzpKXlNs"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 2471,
+      "self": "https://openangler.com/api/v1.0/tags/2471",
+      "name": "Fishing"
+    },
+    {
+      "id": 2476,
+      "self": "https://openangler.com/api/v1.0/tags/2476",
+      "name": "South Carolina"
+    }
+  ]
+}
+```
+
+
+### HTTP Request
+
+`GET https://openangler.com/api/tags`
+
+
+### Parameters
+
+Parameter | description
+--------- | -----------
+id        | The id of the tag
+name      | The name of the tag
