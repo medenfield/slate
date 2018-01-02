@@ -781,6 +781,33 @@ request_reference | string | The ID of the Request node
 workflow_state | string | The workflow state of the trip
 
 
+## Workflow States
+
+ID | Label
+----- | -------
+2 | Approved
+3 | Referred
+4 | Denied
+6 | Requested
+16 | Cancelled
+21 | Trip Completed
+26 | Customer Dispute
+31 | Payment Issued
+36 | Customer Refunded
+41 | Deposit Payment Requested
+46 | Payment Error
+51 | No Response
+56 | Expired
+66 | Referral Accepted
+71 | Referral Denied
+76 | Customer Cancelled
+81 | Checkout Completed
+86 | Agent Cancelled
+91 | Full Payment Requested
+
+
+
+
 
 # Images
 
@@ -837,7 +864,7 @@ curl "https://openangler.com/api/images"
 
 ### HTTP Request
 
-`GET https://openangler.com/api/images/`
+`GET https://openangler.com/api/images`
 
 ## Get a Specific Image
 
@@ -867,7 +894,7 @@ curl "https://openangler.com/api/images/2"
   ],
   "self":{
     "title":"Self",
-    "href":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/images\/2"
+    "href":"https:\/\/openangler.com\/api\/v1.0\/images\/2"
   }
 }
 ```
@@ -908,12 +935,12 @@ curl "https://openangler.com/api/images/2"
   "self":
   {
     "title":"Self",
-    "href":"http:\/\/openangler.test.dd:8083\/api\/file-upload"
+    "href":"https:\/\/openangler.com\/api\/file-upload"
   },
   "next":
   {
     "title":"Next",
-    "href":"http:\/\/openangler.test.dd:8083\/api\/file-upload?page%5Bnumber%5D=2"
+    "href":"https:\/\/openangler.com\/api\/file-upload?page%5Bnumber%5D=2"
   }
 }
 ```
