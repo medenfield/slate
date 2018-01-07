@@ -688,7 +688,7 @@ curl "https://openangler.com/api/requets"
 Confirmed trips on Open Angler.
 
 
-## Get a specific request
+## Get a specific trip
 
 ```
 curl "https://openangler.com/api/trips/<id>"
@@ -806,7 +806,52 @@ ID | Label
 91 | Full Payment Requested
 
 
+## Create a Trip
 
+```
+curl "https://openangler.com/api/trips"
+  -X POST
+  -H "access-token: LoehxXU1OexRXmW7jl2XfjYMbRNbkAZo86wuXqKLUqw"
+  -d "{\"name\":\"test trip\", \"guide_id\": {\"uid\":1}, \"request_reference\":157857,  \"listing_reference\":37}"
+```
+
+> The above command returns JSON structured like this:
+
+```JSON
+{
+  "data":[
+    {
+      "id":"157859",
+      "self":"https:\/\/openangler.com\/api\/v1.0\/trips\/157859",
+      "name":"test trip",
+      "guide_id":"1",
+      "listing_reference":"37",
+      "trip_date":null,
+      "base_price":null,
+      "guide_fees":null,
+      "platform_fee":null,
+      "customer_total":null,
+      "transaction_fee":null,
+      "commission":null,
+      "guide_payout":null,
+      "customer_id":null,
+      "customer_name":null,
+      "customer_email":null,
+      "customer_phone":null,
+      "customer_guest_count":null,
+      "cancellation_policy":null,
+      "request_reference":"157857",
+      "workflow_state":"6"
+    }
+  ],
+  "count":475,
+  "self":{
+    "title":"Self","href":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/trips"
+  },
+  "next":{
+    "title":"Next","href":"http:\/\/openangler.test.dd:8083\/api\/v1.0\/trips?page%5Bnumber%5D=2"
+  }
+}
 
 
 # Images
